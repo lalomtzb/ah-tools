@@ -23,7 +23,7 @@ h1,h2,h3,.brandfont{font-family:'Poppins','Inter',sans-serif}
 .btn-primary{background:var(--blue);color:#fff}.btn-primary:hover{background:#173d70}
 .btn-ghost{background:#fff;color:var(--blue);border:1.5px solid var(--blue)}.btn-ghost:hover{background:var(--blue-soft)}
 .nav{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:8px}
-.hero{text-align:center;padding:26px 10px}.hero img{height:84px;margin-bottom:18px}
+.hero{text-align:center;padding:26px 10px}.hero img{height:120px;margin-bottom:18px}
 .hero h1{font-size:38px;margin:.1em 0;letter-spacing:.5px}
 .hero .tag{color:var(--blue);font-weight:600;font-size:18px;margin-bottom:18px}
 .hero p{color:var(--muted);max-width:540px;margin:0 auto 22px;font-size:16px}
@@ -81,7 +81,7 @@ function nAns(){return Object.keys(answers).length;}
 const answers={}; let screen='welcome'; const app=document.getElementById('app');
 function T(str,o){return str.replace(/\{(\w+)\}/g,(_,k)=>o[k]!=null?o[k]:'');}
 function topbar(step){const pct=screen==='results'?100:(screen==='welcome'?0:Math.round(nAns()/NQ*100));
- return `<div class="top"><img src="${CFG.lockup}" alt="Absurdly Human"><span class="step">${step||''}</span></div>
+ return `<div class="top"><span class="step">${step||''}</span></div>
  <div class="progress"><i style="width:${pct}%"></i></div>`;}
 function render(){window.scrollTo(0,0);
  if(screen==='welcome')return welcome();
@@ -89,7 +89,7 @@ function render(){window.scrollTo(0,0);
  return section(screen);}
 function welcome(){
  app.innerHTML=`${topbar('')}
- <div class="hero"><img src="${CFG.lockup}" alt="Absurdly Human">
+ <div class="hero"><a href="https://www.absurdlyhuman.com" target="_blank" rel="noopener"><img src="${CFG.lockup}" alt="Absurdly Human"></a>
  <h1 class="brandfont">${U.hero_title}</h1>
  <div class="tag">${U.hero_tag}</div><p>${U.hero_p}</p>
  <div class="facts">${U.facts.map(f=>`<div class="fact">${f}</div>`).join('')}</div>
