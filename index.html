@@ -137,7 +137,7 @@ function results(){
  if(pr.free){h+=`<div class="freebox"><b>${U.free_label}</b><br>${pr.free}</div>`;}
  h+=`<p style="margin:6px 0 14px">${U.reco_intro}</p>
  <div class="tkrow"><div><b style="font-size:17px">${pr.name}</b><br><span style="color:var(--muted);font-size:14px">${pr.desc}</span></div>
- <a class="btn btn-primary" href="${pr.link}" style="text-decoration:none;white-space:nowrap">${cta}</a></div>
+ <a class="btn btn-primary" href="${pr.link}" target="_blank" rel="noopener noreferrer" style="text-decoration:none;white-space:nowrap">${cta}</a></div>
  <div class="email"><input id="mail" type="email" placeholder="${U.email_ph}">
  <button class="btn btn-ghost" onclick="capture()">${U.email_btn}</button></div>
  <div id="mailok" style="color:#1B6B3A;font-weight:600;font-size:14px;margin-top:8px;display:none">${U.email_ok}</div></div>`;
@@ -145,7 +145,7 @@ function results(){
  const sr=secondary.d.rec;
  h+=`<div class="sec2"><div class="kick">${U.sec_kick}</div>
  <div class="ln">${T(U.sec_line,{name:secondary.d.name,lvl:secondary.b.name,s:secondary.s.toFixed(2)})}
- <b>${sr.name}</b> · <a href="${sr.link}">${sr[CFG.reco_cta_key]}</a></div></div>`;
+ <b>${sr.name}</b> · <a href="${sr.link}" target="_blank" rel="noopener noreferrer">${sr[CFG.reco_cta_key]}</a></div></div>`;
  h+=`<div class="teaser">${U.teaser}</div>
  <div class="nav" style="margin-top:22px"><button class="btn btn-ghost" onclick="restart()">${U.restart}</button><span></span></div>
  <div class="foot"><img class="smallmark" src="${CFG.mark}">${U.foot}</div>`;
