@@ -62,7 +62,7 @@ function buildReportEmail(p){
 
   var pr=p.primary||{};
   var link=TOOLKITS_URL;
-  var ctaTxt=esc(short(pr.recCta,60))||esc(L.cta_default);
+  var ctaTxt=esc(short(String(pr.recCta||'').replace(/\s*→\s*$/,''),60))||esc(L.cta_default);
   var ctaHtml=link?'<a href="'+link+'" style="display:inline-block;background:'+NAVY+';color:#fff;text-decoration:none;font:700 15px Arial,Helvetica,sans-serif;padding:12px 22px;border-radius:8px">'+ctaTxt+' →</a>':'';
   var freeHtml=pr.free?'<div style="background:#eef2fb;border-radius:8px;padding:12px 14px;margin:10px 0;font:14px Arial,Helvetica,sans-serif;color:'+INK+'"><b>'+esc(L.free)+'</b><br>'+esc(short(pr.free,400))+'</div>':'';
 
