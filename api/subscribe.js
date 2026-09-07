@@ -14,6 +14,8 @@
 
 const SENDER_EMAIL = process.env.REPORT_SENDER_EMAIL || 'info@absurdlyhuman.com';
 const SENDER_NAME = 'Absurdly Human';
+const LOGO_URL = 'https://pulse.absurdlyhuman.com/ah-lockup-white.png';
+const TOOLKITS_URL = 'https://www.absurdlyhuman.com/toolkits-1';
 
 function esc(v){return String(v==null?'':v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
 function num(v){var n=Number(v);if(!isFinite(n))n=0;if(n<0)n=0;if(n>5)n=5;return n;}
@@ -59,7 +61,7 @@ function buildReportEmail(p){
   }).join('');
 
   var pr=p.primary||{};
-  var link=safeLink(pr.recLink);
+  var link=TOOLKITS_URL;
   var ctaTxt=esc(short(pr.recCta,60))||esc(L.cta_default);
   var ctaHtml=link?'<a href="'+link+'" style="display:inline-block;background:'+NAVY+';color:#fff;text-decoration:none;font:700 15px Arial,Helvetica,sans-serif;padding:12px 22px;border-radius:8px">'+ctaTxt+' →</a>':'';
   var freeHtml=pr.free?'<div style="background:#eef2fb;border-radius:8px;padding:12px 14px;margin:10px 0;font:14px Arial,Helvetica,sans-serif;color:'+INK+'"><b>'+esc(L.free)+'</b><br>'+esc(short(pr.free,400))+'</div>':'';
@@ -72,7 +74,7 @@ function buildReportEmail(p){
   }
 
   var sec=p.secondary||{};
-  var secLink=safeLink(sec.recLink);
+  var secLink=TOOLKITS_URL;
   var secHtml=sec.name?'<div style="border-top:1px solid '+LINE+';margin-top:18px;padding-top:14px;font:14px Arial,Helvetica,sans-serif;color:'+MUTED+'">'
       +'<b style="color:'+INK+'">'+esc(L.also)+':</b> '+esc(short(sec.name,80))+' ('+esc(short(sec.band,40))+' · '+fnum(sec.score)+') — '
       +(secLink?'<a href="'+secLink+'" style="color:#1E4D8C">'+esc(short(sec.recName,80))+'</a>':esc(short(sec.recName,80)))+'</div>':'';
@@ -93,8 +95,8 @@ function buildReportEmail(p){
     +'<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:'+BG+'"><tr><td align="center">'
     +'<table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#fff;border-radius:14px;overflow:hidden">'
     +'<tr><td style="background:'+NAVY+';padding:22px 26px">'
-      +'<div style="font:800 20px Arial,Helvetica,sans-serif;color:#fff">Absurdly Human</div>'
-      +'<div style="font:700 12px Arial,Helvetica,sans-serif;letter-spacing:1px;color:#9fb0d6;text-transform:uppercase;margin-top:2px">Culture Check</div></td></tr>'
+      +'<a href="https://www.absurdlyhuman.com" style="text-decoration:none"><img src="'+LOGO_URL+'" alt="Absurdly Human" width="200" style="display:block;width:200px;max-width:62%;height:auto;border:0"></a>'
+      +'<div style="font:700 12px Arial,Helvetica,sans-serif;letter-spacing:1px;color:#9fb0d6;text-transform:uppercase;margin-top:12px">Culture Check</div></td></tr>'
     +'<tr><td style="padding:26px">'
       +'<h1 style="font:800 22px Arial,Helvetica,sans-serif;color:'+INK+';margin:0 0 6px">'+esc(L.title)+'</h1>'
       +'<p style="font:15px Arial,Helvetica,sans-serif;color:'+MUTED+';margin:0 0 14px">'+esc(L.intro)+'</p>'
