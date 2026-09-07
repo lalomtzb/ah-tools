@@ -146,7 +146,7 @@ function results(){
  <button class="btn btn-ghost" onclick="capture()">${U.email_btn}</button></div>
  <div id="mailok" style="color:#1B6B3A;font-weight:600;font-size:14px;margin-top:8px;display:none">${U.email_ok}</div></div>`;
  // secondary
- const sr=secondary.d.rec;
+ const sr=secondary.d.rec; window._report={lang:CFG.lang,source:CFG.source,focus:primary.d.name,overall:(CFG.show_overall?{score:+overall().toFixed(2),band:bandOf(overall()).name,hex:bandOf(overall()).hex}:null),dims:sorted.map(function(o){return{name:o.d.name,score:+o.s.toFixed(2),band:o.b.name,hex:o.b.hex,color:o.d.color};}),primary:{name:primary.d.name,band:primary.b.name,hex:primary.b.hex,score:+primary.s.toFixed(2),note:primary.b.note,recName:pr.name,recDesc:pr.desc,recLink:pr.link,recCta:cta,free:(pr.free||'')},secondary:{name:secondary.d.name,band:secondary.b.name,hex:secondary.b.hex,score:+secondary.s.toFixed(2),recName:sr.name,recLink:sr.link,recCta:sr[CFG.reco_cta_key]}};
  h+=`<div class="sec2"><div class="kick">${U.sec_kick}</div>
  <div class="ln">${T(U.sec_line,{name:secondary.d.name,lvl:secondary.b.name,s:secondary.s.toFixed(2)})}
  <b>${sr.name}</b> · <a href="${sr.link}" target="_blank" rel="noopener noreferrer">${sr[CFG.reco_cta_key]}</a></div></div>`;
@@ -175,7 +175,7 @@ function next(){const si=screen;
  screen=(si===NS-1)?'results':si+1;render();}
 function back(){screen=(screen===0)?'welcome':screen-1;render();}
 function restart(){for(const k in answers)delete answers[k];screen='welcome';render();}
-function capture(){var m=document.getElementById('mail');var ok=document.getElementById('mailok');if(!m||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(m.value)){return;}m.disabled=true;var btn=m.nextElementSibling;if(btn)btn.disabled=true;fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:m.value,source:CFG.source,focus:window._focus||''})}).then(function(r){ok.textContent=r.ok?U.email_ok:U.email_err;ok.style.color=r.ok?'#1B6B3A':'#922B21';ok.style.display='block';}).catch(function(){ok.textContent=U.email_err;ok.style.color='#922B21';ok.style.display='block';});}
+function capture(){var m=document.getElementById('mail');var ok=document.getElementById('mailok');if(!m||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(m.value)){return;}m.disabled=true;var btn=m.nextElementSibling;if(btn)btn.disabled=true;fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.assign({email:m.value},window._report||{source:CFG.source,focus:window._focus||''}))}).then(function(r){ok.textContent=r.ok?U.email_ok:U.email_err;ok.style.color=r.ok?'#1B6B3A':'#922B21';ok.style.display='block';}).catch(function(){ok.textContent=U.email_err;ok.style.color='#922B21';ok.style.display='block';});}
 render();
 </script>
 </body>
